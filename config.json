@@ -1,0 +1,28 @@
+{
+  "repo": "pixel-journey-marketing",
+  "historyWindowDays": 21,
+  "maxDailySuggestions": 5,
+  "pillarWeights": {
+    "explore": 1.2,
+    "learn": 1.5,
+    "build": 1.0,
+    "play": 1.3,
+    "enjoy": 1.4,
+    "lore": 0.9
+  },
+  "atomicAssets": {
+    "collection": "pixeljourney",
+    "schema": "pixals",
+    "templateId": 781515,
+    "nodes": [
+      "https://wax.api.atomicassets.io/atomicassets/v1",
+      "https://atomic.wax.io/atomicassets/v1",
+      "https://wax-atomic.eosphere.io/atomicassets/v1"
+    ]
+  },
+  "demo": {
+    "defaultFrame": "neon-pixel",
+    "canvasWidth": 1080,
+    "canvasHeight": 1080
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "pixel-journey-marketing",
+  "version": "0.1.0",
+  "description": "GitOps Content Engine + Internal Px Content Studio for Pixel Journey",
+  "type": "module",
+  "scripts": {
+    "generate": "node scripts/generate-daily-suggestions.js",
+    "demo": "echo 'Open demo/index.html in your browser'"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}
