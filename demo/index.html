@@ -322,9 +322,13 @@
             if (!res.ok) return;
             const data = await res.json();
             if (data.suggestions && data.suggestions.length > 0) {
-                // Replace postPool with real suggestions for this session
                 window.realSuggestions = data.suggestions;
-                console.log('%c[Px Studio] Loaded real daily suggestions from data/', 'color:#00ffff');
+                // Show a subtle notice
+                const notice = document.createElement('div');
+                notice.className = 'text-xs text-[#00ffff]/60 mt-2 text-center';
+                notice.innerHTML = `Loaded ${data.suggestions.length} real suggestions from today's run`;
+                document.getElementById('post-placeholder').parentNode.appendChild(notice);
+                console.log('%c[Px Studio] Loaded real daily suggestions', 'color:#00ffff');
             }
         } catch (e) {
             // Silent fail - using embedded posts
