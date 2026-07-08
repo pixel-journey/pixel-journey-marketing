@@ -323,7 +323,6 @@
             const data = await res.json();
             if (data.suggestions && data.suggestions.length > 0) {
                 window.realSuggestions = data.suggestions;
-                // Show a subtle notice in the inspirer area
                 const notice = document.createElement('div');
                 notice.className = 'text-xs text-[#00ffff]/60 mt-2 text-center';
                 notice.innerHTML = `Loaded ${data.suggestions.length} real suggestions from today's automation`;
@@ -488,7 +487,7 @@
             if (!currentPost) inspireMe(false);
         }, 600);
 
-        console.log('%c[Px Content Studio v0.3] Fully aligned. Real suggestions loader + more posts. Px perfect.', 'color:#00ffff');
+        console.log('%c[Px Content Studio v0.3] Fully aligned. More posts added. Continuing expansion.', 'color:#00ffff');
     }
 
     window.onload = boot;
