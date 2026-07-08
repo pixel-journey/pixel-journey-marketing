@@ -76,7 +76,7 @@
                         <span id="post-pillar" class="px-4 py-1 text-xs font-bold rounded-full bg-[#00ffff] text-black tracking-widest"></span>
                         <span id="post-id" class="font-mono text-xs text-[#00ffff]/50"></span>
                     </div>
-                    <div id="post-text" class="post-text text-[#00ffff] whitespace-pre-wrap mb-5"></div>
+                    <div id="post-text" contenteditable="true" class="post-text text-[#00ffff] whitespace-pre-wrap mb-5 border border-[#00ffff]/20 rounded-xl p-3 focus:outline-none focus:border-[#00ffff]"></div>
                     
                     <div class="flex gap-3">
                         <button onclick="copyPostWithHashtags()" class="flex-1 retro-btn bg-[#00ffff] hover:bg-white text-black py-3.5 rounded-2xl text-sm flex items-center justify-center gap-2">
@@ -213,10 +213,6 @@
         filterLists();
     }
 
-    function filterByPillar(pillar, btn) {
-        // Legacy - now handled by togglePillarFilter
-    }
-
     function getPillarCounts() {
         let history = JSON.parse(localStorage.getItem('px_history_v3') || '[]');
         const counts = { explore: 0, learn: 0, build: 0, play: 0, enjoy: 0, lore: 0 };
@@ -262,7 +258,14 @@
 
         document.getElementById('post-pillar').textContent = currentPost.pillar.toUpperCase();
         document.getElementById('post-id').textContent = currentPost.id;
-        document.getElementById('post-text').textContent = currentPost.text;
+
+        const textEl = document.getElementById('post-text');
+        textEl.textContent = currentPost.text;
+
+        // Make text editable and sync back to currentPost
+        textEl.oninput = () => {
+            currentPost.text = textEl.textContent;
+        };
     }
 
     function copyPostWithHashtags() {
@@ -625,7 +628,7 @@
             if (!currentPost) inspireMe(false);
         }, 600);
 
-        console.log('%c[Px Content Studio v0.3] Fully aligned. Pillar filters active. Continuing expansion.', 'color:#00ffff');
+        console.log('%c[Px Content Studio v0.3] Fully aligned. Editable posts + more content. Continuing expansion.', 'color:#00ffff');
     }
 
     window.onload = boot;
