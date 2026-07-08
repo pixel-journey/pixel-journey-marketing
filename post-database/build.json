@@ -1,0 +1,30 @@
+[
+  {
+    "id": "build-pxwallet-godmode-001",
+    "text": "PxWallet god-mode is moving through the 26-phase master plan. Current focus: encrypted local vault + secure cross-chain key derivation (WAX → EVM + Solana). Everything client-side with WharfKit. No backend. No compromises. Pure self-custody.",
+    "hooks": ["PxWallet progress update", "26-phase roadmap"],
+    "cta": "Follow the full roadmap in our GitBook →",
+    "tags": ["PxWallet", "Roadmap", "Dev"]
+  },
+  {
+    "id": "build-pxpackages-002",
+    "text": "PxPackages unification is in progress. @pxjourney/* monorepo with standardized wiring, Hyperion hooks, and beta dApp portals. The goal: every Pixel Journey product feels like one cohesive ecosystem.",
+    "hooks": ["PxPackages update", "Monorepo standardization"],
+    "cta": "Explore the packages on GitHub →",
+    "tags": ["PxPackages", "Architecture", " standardization"]
+  },
+  {
+    "id": "build-design-system-003",
+    "text": "The pixel-journey-design-system is our single source of truth for visuals, components, and tone. Retro pixel + glassmorphic + CRT vibes. Every post, every dApp, every graphic should feel like it belongs to the same universe.",
+    "hooks": ["Design system deep dive", "Pixel Journey visuals"],
+    "cta": "Read the style guide →",
+    "tags": ["Design", "Branding", "Consistency"]
+  },
+  {
+    "id": "build-hot-or-not-verifiable-004",
+    "text": "The Hot or Not verifiable pairing system uses deterministic client-side parsing of WharfKit broadcast TX hashes + block headers. Provably fair randomness with zero RAM or oracle fees. This is how we do it on WAX.",
+    "hooks": ["How Hot or Not seeds work", "On-chain entropy"],
+    "cta": "Try the next round and verify the seed →",
+    "tags": ["Hot or Not", "Verifiable", "Technical"]
+  }
+]

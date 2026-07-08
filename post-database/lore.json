@@ -1,0 +1,30 @@
+[
+  {
+    "id": "lore-pixel-journey-vision-001",
+    "text": "Pixel Journey started on WAX in 2023 and is expanding across chains. Not just NFTs — a full ecosystem of verifiable mechanics, education, playful ownership, and long-term vision. The goal is simple: make Web3 feel like a retro pixel adventure worth exploring for years.",
+    "hooks": ["Pixel Journey origin story", "The long-term vision"],
+    "cta": "Read the full vision in our GitBook →",
+    "tags": ["Vision", "Lore", "Future"]
+  },
+  {
+    "id": "lore-multi-chain-002",
+    "text": "WAX will always be home, but Pixel Journey is going multi-chain. Secure cross-chain key derivation in PxWallet means your identity and assets can travel safely. One journey, many chains.",
+    "hooks": ["Multi-chain Pixel Journey", "Cross-chain identity"],
+    "cta": "See the derivation flow in PxWallet →",
+    "tags": ["Multi-chain", "Future", "Security"]
+  },
+  {
+    "id": "lore-trustless-fun-003",
+    "text": "We believe in trustless systems that are still fun. Verifiable seeds, on-chain voting, no hidden team wallets, community-first drops. Serious tech + meme culture. That’s the Pixel Journey way.",
+    "hooks": ["Trustless but fun", "Pixel Journey philosophy"],
+    "cta": "Join the conversation →",
+    "tags": ["Philosophy", "Trustless", "Fun"]
+  },
+  {
+    "id": "lore-rwas-future-004",
+    "text": "Real World Assets are coming to Pixel Journey. Not just digital collectibles — on-chain representation of real value, ownership, and community governance. The pixel universe is expanding into the real world.",
+    "hooks": ["RWAs incoming", "Real value on-chain"],
+    "cta": "Stay tuned for the first RWA drop →",
+    "tags": ["RWA", "Future", "Vision"]
+  }
+]

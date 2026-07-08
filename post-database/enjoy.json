@@ -1,16 +1,30 @@
 [
   {
-    "id": "enjoy-pixal-random-001",
-    "text": "Random Pixal from the remaining supply just got pulled into the studio. Which survivor are you claiming next? 🚀",
+    "id": "enjoy-pixal-random-003",
+    "text": "Pulled a fresh random Pixal from the remaining on-chain supply straight into the studio. Which survivor speaks to you today? The early mints are getting rare... and the community is getting stronger.",
     "hooks": ["Fresh Pixal energy", "Which one is your favourite?"],
-    "cta": "Generate your own in the Px Content Studio →",
+    "cta": "Generate your own random Pixal in the Px Content Studio →",
     "tags": ["Pixal", "Community", "Fun"]
   },
   {
-    "id": "enjoy-kitkat-003",
-    "text": "POV: You finally found the secret KitKat stash in the Pixel Journey lore... but the real treasure was the Pixals we minted along the way 😅",
+    "id": "enjoy-kitkat-heist-004",
+    "text": "POV: You finally located the legendary KitKat stash hidden deep in the Pixel Journey lore... but the real prize was the community of Pixal holders we found along the way. Some legends are better shared.",
     "hooks": ["KitKat heist vibes", "Pixel Journey memes"],
-    "cta": "Share your favourite Px meme →",
+    "cta": "Share your favourite Px meme on X →",
     "tags": ["Meme", "Lore", "Community"]
+  },
+  {
+    "id": "enjoy-pixal-eyes-only-005",
+    "text": "PIXAL EYES ONLY. Some things are meant only for those who hold the vision. If you know, you know. The rarest survivors don’t need validation — they just exist on-chain.",
+    "hooks": ["PIXAL EYES ONLY", "Insider vibes"],
+    "cta": "Claim your place among the survivors →",
+    "tags": ["Lore", "Exclusive", "Vibes"]
+  },
+  {
+    "id": "enjoy-community-spotlight-006",
+    "text": "Shoutout to every WAXFAMs member who has minted a Pixal, voted in Hot or Not, or just believed in the vision from day one. You are the reason this ecosystem exists. This one’s for you.",
+    "hooks": ["Community love", "WAXFAMs appreciation"],
+    "cta": "Tag a fellow Pixal holder on X →",
+    "tags": ["Community", "Appreciation", "WAXFAMs"]
   }
 ]

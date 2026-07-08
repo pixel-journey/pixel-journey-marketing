@@ -1,0 +1,30 @@
+[
+  {
+    "id": "explore-what-is-px-001",
+    "text": "What is Pixel Journey? A retro-pixel Web3 adventure that started on WAX in 2023. Collect Pixals, vote in Hot or Not, level up with XP, and explore verifiable on-chain mechanics across chains. Begin your journey today.",
+    "hooks": ["New to Pixel Journey?", "What even is a Pixal?"],
+    "cta": "Connect PxWallet & claim your first Pixal →",
+    "tags": ["Onboarding", "Pixel Journey", "WAX"]
+  },
+  {
+    "id": "explore-pixal-tiers-002",
+    "text": "Pixal tiers matter. Holder → Stacker → Whale → Kraken. The more you hold & engage, the higher your tier and the better your rewards in Hot or Not and future drops. Which tier are you aiming for?",
+    "hooks": ["Pixal tier guide", "How rare is your Pixal?"],
+    "cta": "Check your tier in the Px Content Studio →",
+    "tags": ["Pixal", "Tiers", "Rewards"]
+  },
+  {
+    "id": "explore-pxwallet-start-003",
+    "text": "Getting started with PxWallet is stupidly simple. Connect via WharfKit → create your first account → mint your first Pixal. All client-side, encrypted, and built for the long game. No seed phrase stress.",
+    "hooks": ["PxWallet onboarding", "Easiest WAX wallet?"],
+    "cta": "Open PxWallet now →",
+    "tags": ["PxWallet", "Onboarding", "Security"]
+  },
+  {
+    "id": "explore-hot-or-not-004",
+    "text": "Hot or Not is live. Vote on the rarest surviving Pixals using verifiable TX-memo seeds. Earn XP, build streaks, climb the leaderboard. 50% of rewards go back to the community. Pure on-chain fun.",
+    "hooks": ["Hot or Not is back", "Verifiable voting on WAX"],
+    "cta": "Vote in the next round →",
+    "tags": ["Hot or Not", "Play", "Verifiable"]
+  }
+]

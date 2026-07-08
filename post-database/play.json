@@ -1,9 +1,30 @@
 [
   {
     "id": "play-hot-or-not-007",
-    "text": "Hot or Not alpha is live. Verifiable TX-memo seeds. 50% rewards to top voters. Pixal tiers matter. Come vote on the rarest survivors and earn your streak 🎮",
+    "text": "Hot or Not alpha is live. Verifiable TX-memo seeds. 50% of rewards go to top voters. Pixal tiers (Holder → Stacker → Whale → Kraken) directly impact your power. Come vote on the rarest surviving Pixals and build your streak.",
     "hooks": ["Hot or Not is back", "Verifiable on-chain voting"],
-    "cta": "Open Hot or Not →",
+    "cta": "Open Hot or Not & vote now →",
     "tags": ["Hot or Not", "Play", "Rewards"]
+  },
+  {
+    "id": "play-pixal-survivors-002",
+    "text": "Burns are real. Surviving mint rank matters. In each template, we re-rank only the Pixals that are still alive. Low original mint + high tier = legendary status. The rarest survivors are the ones still holding strong.",
+    "hooks": ["Surviving mint rank explained", "What happens when Pixals burn?"],
+    "cta": "See live survivor stats in the Studio →",
+    "tags": ["Pixal", "Burns", "Rarity"]
+  },
+  {
+    "id": "play-xp-streaks-003",
+    "text": "XP, streaks, and badges are coming to Pixel Journey. Vote consistently, hold rare Pixals, participate in drops. Your on-chain activity becomes your reputation. The grind is real and rewarding.",
+    "hooks": ["XP & streaks system", "Holder reputation"],
+    "cta": "Start building your streak in Hot or Not →",
+    "tags": ["Gamification", "XP", "Engagement"]
+  },
+  {
+    "id": "play-yeet-meme-004",
+    "text": "YEET is the community meme coin of Pixel Journey. No team taxes. Airdrops to holders. Fun first, utility later. Stake it, burn it, or just YEET it. Pure WAXFAMs energy.",
+    "hooks": ["YEET meme coin", "Community token"],
+    "cta": "Join the YEET vibes on X →",
+    "tags": ["YEET", "Meme", "Community"]
   }
 ]
