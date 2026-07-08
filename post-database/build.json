@@ -33,5 +33,12 @@
     "hooks": ["Why we chose WharfKit", "Modern WAX dev stack"],
     "cta": "See WharfKit in action in PxWallet →",
     "tags": ["WharfKit", "Dev", "Best Practices"]
+  },
+  {
+    "id": "build-future-portals-006",
+    "text": "Future PxPortals will follow the same patterns: client-side first, WharfKit powered, retro pixel aesthetic, and deeply integrated with the shared design-system and standards.",
+    "hooks": ["PxPortals vision", "Consistent architecture"],
+    "cta": "Watch this space →",
+    "tags": ["Future", "Architecture", "PxPortals"]
   }
 ]

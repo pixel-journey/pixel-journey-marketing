@@ -33,5 +33,12 @@
     "hooks": ["Claim your first Pixal", "How to start on WAX"],
     "cta": "Mint your first Pixal →",
     "tags": ["Onboarding", "Pixal", "First Steps"]
+  },
+  {
+    "id": "explore-design-system-006",
+    "text": "The pixel-journey-design-system exists so every part of the ecosystem feels like one universe. Retro pixel, neon, CRT vibes across posts, dApps, and graphics. Consistency is part of the experience.",
+    "hooks": ["Design system overview", "Why consistency matters"],
+    "cta": "Explore the design system →",
+    "tags": ["Design", "Branding", "Consistency"]
   }
 ]

@@ -59,9 +59,14 @@
                         </h2>
                         <p class="text-xs text-[#00ffff]/60 mt-1">History-aware • Pillar balanced</p>
                     </div>
-                    <button onclick="inspireMe()" class="retro-btn bg-[#ff00ff] hover:bg-white text-black px-7 py-3 rounded-2xl text-sm flex items-center gap-2">
-                        <i class="fa-solid fa-magic"></i> <span>INSPIRE ME</span>
-                    </button>
+                    <div class="flex gap-2">
+                        <button onclick="inspireMe()" class="retro-btn bg-[#ff00ff] hover:bg-white text-black px-5 py-3 rounded-2xl text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-magic"></i> <span>INSPIRE</span>
+                        </button>
+                        <button onclick="balancedInspire()" class="retro-btn border border-[#00ffff] hover:bg-[#00ffff]/10 text-[#00ffff] px-4 py-3 rounded-2xl text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-balance-scale"></i>
+                        </button>
+                    </div>
                 </div>
 
                 <div id="pillar-chips" class="flex flex-wrap gap-2 mb-5"></div>
@@ -85,7 +90,7 @@
 
                 <div id="post-placeholder" class="text-center py-12 text-[#00ffff]/40">
                     <i class="fa-solid fa-magic text-5xl mb-4"></i>
-                    <p>Hit <span class="font-bold text-[#ff00ff]">INSPIRE ME</span> for a fresh post</p>
+                    <p>Hit <span class="font-bold text-[#ff00ff]">INSPIRE</span> or <span class="font-bold text-[#00ffff]">BALANCED</span></p>
                 </div>
             </div>
 
@@ -183,8 +188,26 @@
         btn.classList.add('bg-[#00ffff]', 'text-black');
     }
 
-    function inspireMe() {
-        const eligible = postPool;
+    function getPillarCounts() {
+        let history = JSON.parse(localStorage.getItem('px_history_v3') || '[]');
+        const counts = { explore: 0, learn: 0, build: 0, play: 0, enjoy: 0, lore: 0 };
+        history.forEach(h => { if (counts[h.pillar] !== undefined) counts[h.pillar]++; });
+        return counts;
+    }
+
+    function inspireMe(balanced = false) {
+        let eligible = [...postPool];
+
+        if (balanced) {
+            const counts = getPillarCounts();
+            const maxCount = Math.max(...Object.values(counts));
+            eligible = eligible.sort((a, b) => {
+                const scoreA = counts[a.pillar] || 0;
+                const scoreB = counts[b.pillar] || 0;
+                return scoreA - scoreB; // prefer lower count pillars
+            });
+        }
+
         if (!eligible.length) return;
         const idx = Math.floor(Math.random() * eligible.length);
         currentPost = eligible[idx];
@@ -196,6 +219,10 @@
         renderPostPreview();
         renderHistory();
         updateStats();
+    }
+
+    function balancedInspire() {
+        inspireMe(true);
     }
 
     function renderPostPreview() {
@@ -229,7 +256,7 @@
         localStorage.setItem('px_history_v3', JSON.stringify(history));
         renderHistory();
         updateStats();
-        setTimeout(inspireMe, 300);
+        setTimeout(() => inspireMe(false), 300);
     }
 
     function renderHistory() {
@@ -278,14 +305,12 @@
             return;
         }
 
-        const counts = {};
-        history.forEach(h => {
-            counts[h.pillar] = (counts[h.pillar] || 0) + 1;
-        });
-
-        let html = 'Used this session: ';
+        const counts = getPillarCounts();
+        let html = 'Session usage: ';
         Object.keys(counts).forEach(p => {
-            html += `<span class="px-2 py-0.5 mx-1 rounded bg-[#00ffff]/10">${p}: ${counts[p]}</span>`;
+            if (counts[p] > 0) {
+                html += `<span class="px-2 py-0.5 mx-1 rounded bg-[#00ffff]/10">${p}: ${counts[p]}</span>`;
+            }
         });
         container.innerHTML = html;
     }
@@ -430,16 +455,16 @@
         renderInitialHistory();
 
         document.addEventListener('keydown', e => {
-            if (e.key.toLowerCase() === 'i') inspireMe();
+            if (e.key.toLowerCase() === 'i') inspireMe(false);
             if (e.key.toLowerCase() === 'r') getRandomPixal();
-            if (e.key === '?') alert('Shortcuts:\nI = Inspire Me\nR = Random Pixal\n? = Help');
+            if (e.key === '?') alert('Shortcuts:\nI = Inspire Me\nB = Balanced Inspire\nR = Random Pixal\n? = Help');
         });
 
         setTimeout(() => {
-            if (!currentPost) inspireMe();
+            if (!currentPost) inspireMe(false);
         }, 600);
 
-        console.log('%c[Px Content Studio v0.3] Fully aligned. Stats added. Even more Px perfect.', 'color:#00ffff');
+        console.log('%c[Px Content Studio v0.3] Fully aligned. Balanced inspire added. Px perfect level.', 'color:#00ffff');
     }
 
     window.onload = boot;
