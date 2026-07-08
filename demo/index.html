@@ -204,7 +204,7 @@
             eligible = eligible.sort((a, b) => {
                 const scoreA = counts[a.pillar] || 0;
                 const scoreB = counts[b.pillar] || 0;
-                return scoreA - scoreB; // prefer lower count pillars
+                return scoreA - scoreB;
             });
         }
 
@@ -464,7 +464,7 @@
             if (!currentPost) inspireMe(false);
         }, 600);
 
-        console.log('%c[Px Content Studio v0.3] Fully aligned. Balanced inspire added. Px perfect level.', 'color:#00ffff');
+        console.log('%c[Px Content Studio v0.3] Fully aligned. Balanced inspire + more posts. Px perfect.', 'color:#00ffff');
     }
 
     window.onload = boot;
