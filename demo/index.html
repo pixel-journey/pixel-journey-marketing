@@ -178,6 +178,7 @@
     let currentPost = null;
     let currentPixal = null;
     let currentFrame = 'neon';
+    let currentFilterPillar = null;
 
     const postPool = [
         { id: "learn-atomicassets-001", pillar: "learn", text: "AtomicAssets on WAX is pure magic. Collection → Schema → Template → Asset. Your Pixals live at template 781515 under the pixals schema.", tags: ["WAX", "AtomicAssets", "Education"] },
@@ -195,14 +196,25 @@
             const btn = document.createElement('button');
             btn.className = `px-3.5 py-1 text-xs font-bold rounded-full border border-[#00ffff]/40 hover:bg-[#00ffff]/10 transition-colors`;
             btn.textContent = p.toUpperCase();
-            btn.onclick = () => filterByPillar(p, btn);
+            btn.onclick = () => togglePillarFilter(p, btn);
             container.appendChild(btn);
         });
     }
 
+    function togglePillarFilter(pillar, btn) {
+        if (currentFilterPillar === pillar) {
+            currentFilterPillar = null;
+            btn.classList.remove('bg-[#00ffff]', 'text-black');
+        } else {
+            document.querySelectorAll('#pillar-chips button').forEach(b => b.classList.remove('bg-[#00ffff]', 'text-black'));
+            btn.classList.add('bg-[#00ffff]', 'text-black');
+            currentFilterPillar = pillar;
+        }
+        filterLists();
+    }
+
     function filterByPillar(pillar, btn) {
-        document.querySelectorAll('#pillar-chips button').forEach(b => b.classList.remove('bg-[#00ffff]', 'text-black'));
-        btn.classList.add('bg-[#00ffff]', 'text-black');
+        // Legacy - now handled by togglePillarFilter
     }
 
     function getPillarCounts() {
@@ -405,7 +417,9 @@
         const historyItems = historyContainer.querySelectorAll('.history-item');
         historyItems.forEach(item => {
             const text = item.textContent.toLowerCase();
-            item.style.display = text.includes(searchTerm) ? '' : 'none';
+            const matchesSearch = text.includes(searchTerm);
+            const matchesPillar = !currentFilterPillar || item.querySelector('.rounded').textContent.toLowerCase() === currentFilterPillar;
+            item.style.display = (matchesSearch && matchesPillar) ? '' : 'none';
         });
 
         // Filter Favorites
@@ -413,7 +427,9 @@
         const favoriteItems = favoritesContainer.querySelectorAll('.history-item');
         favoriteItems.forEach(item => {
             const text = item.textContent.toLowerCase();
-            item.style.display = text.includes(searchTerm) ? '' : 'none';
+            const matchesSearch = text.includes(searchTerm);
+            const matchesPillar = !currentFilterPillar || item.querySelector('.rounded').textContent.toLowerCase() === currentFilterPillar;
+            item.style.display = (matchesSearch && matchesPillar) ? '' : 'none';
         });
     }
 
@@ -609,7 +625,7 @@
             if (!currentPost) inspireMe(false);
         }, 600);
 
-        console.log('%c[Px Content Studio v0.3] Fully aligned. Search added. Continuing expansion.', 'color:#00ffff');
+        console.log('%c[Px Content Studio v0.3] Fully aligned. Pillar filters active. Continuing expansion.', 'color:#00ffff');
     }
 
     window.onload = boot;
