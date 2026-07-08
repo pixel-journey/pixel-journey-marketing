@@ -26,5 +26,12 @@
     "hooks": ["Community love", "WAXFAMs appreciation"],
     "cta": "Tag a fellow Pixal holder on X →",
     "tags": ["Community", "Appreciation", "WAXFAMs"]
+  },
+  {
+    "id": "enjoy-random-pixal-fun-007",
+    "text": "Sometimes the best Pixal is the one you didn’t expect. The random button in the Content Studio has introduced me to some of my favourite survivors. Try it — you might find your next grail.",
+    "hooks": ["Random Pixal magic", "Surprise me"],
+    "cta": "Hit random in the Studio right now →",
+    "tags": ["Pixal", "Fun", "Community"]
   }
 ]

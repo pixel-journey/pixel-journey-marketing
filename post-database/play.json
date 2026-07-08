@@ -4,7 +4,7 @@
     "text": "Hot or Not alpha is live. Verifiable TX-memo seeds. 50% of rewards go to top voters. Pixal tiers (Holder → Stacker → Whale → Kraken) directly impact your power. Come vote on the rarest surviving Pixals and build your streak.",
     "hooks": ["Hot or Not is back", "Verifiable on-chain voting"],
     "cta": "Open Hot or Not & vote now →",
-    "tags": ["Hot or Not", "Play", "Rewards"]
+    "tags": ["HotOrNot", "Play", "Rewards"]
   },
   {
     "id": "play-pixal-survivors-002",
@@ -26,5 +26,12 @@
     "hooks": ["YEET meme coin", "Community token"],
     "cta": "Join the YEET vibes on X →",
     "tags": ["YEET", "Meme", "Community"]
+  },
+  {
+    "id": "play-hot-or-not-strategy-005",
+    "text": "Pro tip for Hot or Not: Vote on low-mint survivors in high-tier templates. Early mints that survived burns are extremely rare. Combine that with tier multipliers for maximum XP and rewards.",
+    "hooks": ["Hot or Not strategy", "Smart voting"],
+    "cta": "Apply this in the next round →",
+    "tags": ["HotOrNot", "Strategy", "Tips"]
   }
 ]

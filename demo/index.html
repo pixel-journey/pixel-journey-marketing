@@ -141,22 +141,22 @@
                 </div>
                 <div id="history-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-sm max-h-[280px] overflow-auto pr-2"></div>
             </div>
-        </div>
 
-        <div class="mt-8 text-center text-xs text-[#00ffff]/40 flex items-center justify-center gap-4">
-            <div>Internal tool only • Fully aligned with Pixel Journey design-system</div>
+            <!-- STATS BAR -->
+            <div class="xl:col-span-12 mt-4 text-xs text-[#00ffff]/60 flex items-center justify-between px-2">
+                <div id="stats-bar"></div>
+                <div>Internal tool • Aligned with design-system</div>
+            </div>
         </div>
     </div>
 
 <script>
-    // Tailwind + config
     function initTailwind() {}
 
     let currentPost = null;
     let currentPixal = null;
     let currentFrame = 'neon';
 
-    // High-quality embedded posts (synced with post-database/)
     const postPool = [
         { id: "learn-atomicassets-001", pillar: "learn", text: "AtomicAssets on WAX is pure magic. Collection → Schema → Template → Asset. Your Pixals live at template 781515 under the pixals schema.", tags: ["WAX", "AtomicAssets", "Education"] },
         { id: "learn-tx-memo-seeds-002", pillar: "learn", text: "Hot or Not pairing is 100% on-chain verifiable. We derive the seed from the TX memo + recent block header. No oracle. No RAM. No trust assumptions.", tags: ["HotOrNot", "Verifiable", "WAX"] },
@@ -181,7 +181,6 @@
     function filterByPillar(pillar, btn) {
         document.querySelectorAll('#pillar-chips button').forEach(b => b.classList.remove('bg-[#00ffff]', 'text-black'));
         btn.classList.add('bg-[#00ffff]', 'text-black');
-        // Future: filter postPool
     }
 
     function inspireMe() {
@@ -190,13 +189,13 @@
         const idx = Math.floor(Math.random() * eligible.length);
         currentPost = eligible[idx];
 
-        // Save to history
         let history = JSON.parse(localStorage.getItem('px_history_v3') || '[]');
         history.unshift({ ...currentPost, ts: Date.now() });
         localStorage.setItem('px_history_v3', JSON.stringify(history.slice(0, 30)));
 
         renderPostPreview();
         renderHistory();
+        updateStats();
     }
 
     function renderPostPreview() {
@@ -229,7 +228,7 @@
         history = history.filter(h => h.id !== currentPost.id);
         localStorage.setItem('px_history_v3', JSON.stringify(history));
         renderHistory();
-        // Auto inspire new one
+        updateStats();
         setTimeout(inspireMe, 300);
     }
 
@@ -271,7 +270,26 @@
         renderPostPreview();
     }
 
-    // === PIXAL RANDOMIZER + FRAME STYLES ===
+    function updateStats() {
+        const container = document.getElementById('stats-bar');
+        let history = JSON.parse(localStorage.getItem('px_history_v3') || '[]');
+        if (history.length === 0) {
+            container.innerHTML = '';
+            return;
+        }
+
+        const counts = {};
+        history.forEach(h => {
+            counts[h.pillar] = (counts[h.pillar] || 0) + 1;
+        });
+
+        let html = 'Used this session: ';
+        Object.keys(counts).forEach(p => {
+            html += `<span class="px-2 py-0.5 mx-1 rounded bg-[#00ffff]/10">${p}: ${counts[p]}</span>`;
+        });
+        container.innerHTML = html;
+    }
+
     const ATOMIC_NODES = [
         'https://wax.api.atomicassets.io/atomicassets/v1',
         'https://atomic.wax.io/atomicassets/v1',
@@ -341,14 +359,12 @@
         ctx.fillStyle = '#0a0a0a';
         ctx.fillRect(0, 0, w, h);
 
-        // Frame styles
         if (currentFrameStyle === 'neon') {
             ctx.strokeStyle = '#00ffff'; ctx.lineWidth = 22; ctx.strokeRect(25, 25, w-50, h-50);
             ctx.strokeStyle = '#ff00ff'; ctx.lineWidth = 9; ctx.strokeRect(45, 45, w-90, h-90);
         } else if (currentFrameStyle === 'crt') {
             ctx.strokeStyle = '#00ffff'; ctx.lineWidth = 18; ctx.strokeRect(30, 30, w-60, h-60);
             ctx.strokeStyle = '#ff00ff'; ctx.lineWidth = 7; ctx.strokeRect(50, 50, w-100, h-100);
-            // scanlines
             ctx.strokeStyle = 'rgba(0,255,255,0.06)'; ctx.lineWidth = 1;
             for (let y = 60; y < h-60; y += 8) { ctx.beginPath(); ctx.moveTo(60, y); ctx.lineTo(w-60, y); ctx.stroke(); }
         } else if (currentFrameStyle === 'pixel') {
@@ -397,12 +413,14 @@
 
     function renderInitialHistory() {
         renderHistory();
+        updateStats();
     }
 
     function clearLocalHistory() {
         if (confirm('Clear all local post history?')) {
             localStorage.removeItem('px_history_v3');
             renderHistory();
+            updateStats();
         }
     }
 
@@ -411,19 +429,17 @@
         initPillarChips();
         renderInitialHistory();
 
-        // Keyboard shortcuts
         document.addEventListener('keydown', e => {
             if (e.key.toLowerCase() === 'i') inspireMe();
             if (e.key.toLowerCase() === 'r') getRandomPixal();
             if (e.key === '?') alert('Shortcuts:\nI = Inspire Me\nR = Random Pixal\n? = Help');
         });
 
-        // Boot with a post
         setTimeout(() => {
             if (!currentPost) inspireMe();
         }, 600);
 
-        console.log('%c[Px Content Studio v0.3] Fully aligned. Multiple frames. History. Hashtags. Pixel perfect.', 'color:#00ffff');
+        console.log('%c[Px Content Studio v0.3] Fully aligned. Stats added. Even more Px perfect.', 'color:#00ffff');
     }
 
     window.onload = boot;
