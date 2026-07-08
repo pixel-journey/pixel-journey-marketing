@@ -26,5 +26,12 @@
     "hooks": ["RWAs incoming", "Real value on-chain"],
     "cta": "Stay tuned for the first RWA drop →",
     "tags": ["RWA", "Future", "Vision"]
+  },
+  {
+    "id": "lore-waxfams-community-005",
+    "text": "The WAXFAMs community is the heart of Pixel Journey. Every holder, voter, and believer shapes what this ecosystem becomes. This isn't just our project — it's ours together.",
+    "hooks": ["WAXFAMs appreciation", "Community is everything"],
+    "cta": "Tag a fellow traveler on X →",
+    "tags": ["Community", "WAXFAMs", "Lore"]
   }
 ]

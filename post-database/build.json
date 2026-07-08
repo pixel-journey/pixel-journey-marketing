@@ -11,7 +11,7 @@
     "text": "PxPackages unification is in progress. @pxjourney/* monorepo with standardized wiring, Hyperion hooks, and beta dApp portals. The goal: every Pixel Journey product feels like one cohesive ecosystem.",
     "hooks": ["PxPackages update", "Monorepo standardization"],
     "cta": "Explore the packages on GitHub →",
-    "tags": ["PxPackages", "Architecture", " standardization"]
+    "tags": ["PxPackages", "Architecture", "Standardization"]
   },
   {
     "id": "build-design-system-003",
@@ -26,5 +26,12 @@
     "hooks": ["How Hot or Not seeds work", "On-chain entropy"],
     "cta": "Try the next round and verify the seed →",
     "tags": ["Hot or Not", "Verifiable", "Technical"]
+  },
+  {
+    "id": "build-wharfkit-patterns-005",
+    "text": "We build everything with WharfKit now. Session Kit for auth, Contract Kit for interactions, Account Kit for multi-account flows. It's the modern, secure foundation for all Pixel Journey dApps.",
+    "hooks": ["Why we chose WharfKit", "Modern WAX dev stack"],
+    "cta": "See WharfKit in action in PxWallet →",
+    "tags": ["WharfKit", "Dev", "Best Practices"]
   }
 ]

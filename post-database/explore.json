@@ -26,5 +26,12 @@
     "hooks": ["Hot or Not is back", "Verifiable voting on WAX"],
     "cta": "Vote in the next round →",
     "tags": ["Hot or Not", "Play", "Verifiable"]
+  },
+  {
+    "id": "explore-first-pixal-005",
+    "text": "Your first Pixal is waiting. Connect WharfKit → choose your survivor → start building your on-chain reputation. The journey begins with one mint.",
+    "hooks": ["Claim your first Pixal", "How to start on WAX"],
+    "cta": "Mint your first Pixal →",
+    "tags": ["Onboarding", "Pixal", "First Steps"]
   }
 ]
