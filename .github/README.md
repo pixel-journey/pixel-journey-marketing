@@ -1,41 +1,52 @@
-# .github/ — GitHub Automation & Repository Health
+# .github/
 
-This folder contains the configuration that makes the entire **GitOps Content Engine** work with zero ongoing cost.
+This folder contains GitHub-specific configuration and automation for the Pixel Journey content engine.
 
-GitHub Actions provides free daily compute that keeps fresh suggestions coming, while everything stays versioned in Git.
+## Workflows
 
-## Folder Contents
+### daily-content-sync.yml
 
-- `workflows/daily-content-sync.yml` — The production automation workflow.
-- `README.md` — This file.
+**Purpose**: Runs every night (or on manual trigger) to generate fresh, balanced post suggestions.
 
-## The Daily Content Sync Workflow
+**What it does**:
+1. Checks out the repository
+2. Sets up Node.js
+3. Runs `scripts/generate-daily-suggestions.js`
+4. Commits any changes to `data/daily-suggestions.json` and `data/used-history.json`
 
-Runs every night (or on manual trigger):
+**Schedule**: Runs daily at a set time (configured in the workflow).
 
-1. Checks out latest code.
-2. Runs `node scripts/generate-daily-suggestions.js`.
-3. Commits updated `data/daily-suggestions.json` + health report.
-4. Pushes back to main.
+**Manual trigger**: You can also run it manually from the Actions tab.
 
-The entire history of content evolution is permanently preserved.
+**Why it exists**:
+- Prevents content fatigue by enforcing history filtering
+- Maintains pillar balance automatically
+- Keeps suggestions fresh without manual daily effort
 
-## How to Enable
+## Automation Philosophy
 
-1. Go to **Actions** tab.
-2. Find `daily-content-sync` workflow.
-3. Click **Enable workflow**.
-4. (Recommended) Run it manually once to verify.
+We follow a GitOps approach:
+- All logic lives in version-controlled scripts
+- Outputs are committed back to the repo
+- No external services or paid tools required
+- Fully transparent and auditable
 
-You can edit the cron in the YAML if you want different frequency.
+## Related Files
 
-**No repository secrets required** for the basic pipeline.
+- `scripts/generate-daily-suggestions.js` — The core suggestion engine
+- `config.json` — Controls history window, max suggestions, and pillar weights
+- `data/` — Generated outputs (do not edit manually)
 
-## Why This Architecture Wins
+## Maintenance
 
-- Zero server cost
-- Fully transparent & auditable (every suggestion is a Git commit)
-- Instant CDN delivery of generated suggestions
-- Easy to extend with more pillars, performance scoring, or Discord notifications later
+If the workflow fails:
+- Check the Actions tab for logs
+- Common issues are usually related to API rate limits on AtomicAssets fetches (rare for this workflow)
+- The script is designed to be resilient
 
-Part of pixel-journey-marketing — built for the Pixel Journey ecosystem.
+For changes to automation logic, edit the script and test locally with:
+```bash
+node scripts/generate-daily-suggestions.js
+```
+
+See the root `README.md` for overall repo usage.
