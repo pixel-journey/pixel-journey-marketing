@@ -148,6 +148,13 @@
                     <button onclick="clearLocalHistory()" class="text-xs px-4 py-2 border border-[#ff00ff]/40 rounded-full hover:bg-[#ff00ff]/10">CLEAR HISTORY</button>
                 </div>
 
+                <!-- Search -->
+                <div class="mb-3">
+                    <input id="search-input" type="text" placeholder="Search posts..." 
+                           class="w-full bg-[#0a0a0a] border border-[#00ffff]/30 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-[#00ffff]" 
+                           oninput="filterLists()">
+                </div>
+
                 <div id="history-panel">
                     <div id="history-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-sm max-h-[280px] overflow-auto pr-2"></div>
                 </div>
@@ -229,6 +236,7 @@
         renderPostPreview();
         renderHistory();
         updateStats();
+        filterLists();
     }
 
     function balancedInspire() {
@@ -271,6 +279,7 @@
         }
         localStorage.setItem('px_favorites_v1', JSON.stringify(favorites.slice(0, 50)));
         renderFavorites();
+        filterLists();
     }
 
     function markCurrentAsUsed() {
@@ -280,6 +289,7 @@
         localStorage.setItem('px_history_v3', JSON.stringify(history));
         renderHistory();
         updateStats();
+        filterLists();
         setTimeout(() => inspireMe(false), 300);
     }
 
@@ -360,6 +370,7 @@
         favorites.splice(index, 1);
         localStorage.setItem('px_favorites_v1', JSON.stringify(favorites));
         renderFavorites();
+        filterLists();
     }
 
     function showTab(tab) {
@@ -383,6 +394,27 @@
             historyTab.classList.remove('bg-[#00ffff]', 'text-black');
             historyTab.classList.add('border', 'border-[#ff00ff]', 'text-[#ff00ff]');
         }
+        filterLists();
+    }
+
+    function filterLists() {
+        const searchTerm = document.getElementById('search-input').value.toLowerCase();
+        
+        // Filter History
+        const historyContainer = document.getElementById('history-list');
+        const historyItems = historyContainer.querySelectorAll('.history-item');
+        historyItems.forEach(item => {
+            const text = item.textContent.toLowerCase();
+            item.style.display = text.includes(searchTerm) ? '' : 'none';
+        });
+
+        // Filter Favorites
+        const favoritesContainer = document.getElementById('favorites-list');
+        const favoriteItems = favoritesContainer.querySelectorAll('.history-item');
+        favoriteItems.forEach(item => {
+            const text = item.textContent.toLowerCase();
+            item.style.display = text.includes(searchTerm) ? '' : 'none';
+        });
     }
 
     function updateStats() {
@@ -557,6 +589,7 @@
             localStorage.removeItem('px_history_v3');
             renderHistory();
             updateStats();
+            filterLists();
         }
     }
 
@@ -576,7 +609,7 @@
             if (!currentPost) inspireMe(false);
         }, 600);
 
-        console.log('%c[Px Content Studio v0.3] Fully aligned. Favorites added. Continuing expansion.', 'color:#00ffff');
+        console.log('%c[Px Content Studio v0.3] Fully aligned. Search added. Continuing expansion.', 'color:#00ffff');
     }
 
     window.onload = boot;
