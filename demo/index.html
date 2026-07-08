@@ -323,12 +323,15 @@
             const data = await res.json();
             if (data.suggestions && data.suggestions.length > 0) {
                 window.realSuggestions = data.suggestions;
-                // Show a subtle notice
+                // Show a subtle notice in the inspirer area
                 const notice = document.createElement('div');
                 notice.className = 'text-xs text-[#00ffff]/60 mt-2 text-center';
-                notice.innerHTML = `Loaded ${data.suggestions.length} real suggestions from today's run`;
-                document.getElementById('post-placeholder').parentNode.appendChild(notice);
-                console.log('%c[Px Studio] Loaded real daily suggestions', 'color:#00ffff');
+                notice.innerHTML = `Loaded ${data.suggestions.length} real suggestions from today's automation`;
+                const placeholder = document.getElementById('post-placeholder');
+                if (placeholder && placeholder.parentNode) {
+                    placeholder.parentNode.appendChild(notice);
+                }
+                console.log('%c[Px Studio] Loaded real daily suggestions from data/', 'color:#00ffff');
             }
         } catch (e) {
             // Silent fail - using embedded posts
