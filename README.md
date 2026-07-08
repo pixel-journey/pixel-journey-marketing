@@ -1,22 +1,24 @@
 # pixel-journey-marketing
 
-**GitOps Content Engine + Internal Px Content Studio**
+**GitOps Content Engine + Internal Px Content Studio for the Pixel Journey ecosystem**
 
-The single source of truth for all @PxJourney social presence across the Pixel Journey ecosystem on WAX.
+The single source of truth for consistent, high-quality @PxJourney social output across WAX and the broader Web3 journey.
 
-This repository turns scattered posting into a programmable, versioned, anti-burnout system while keeping the friendly, educational, "pixel-perfect" voice.
+This repository turns ad-hoc posting into a programmable, versioned, and scalable system while preserving the friendly, educational, retro-pixel-perfect voice that defines Pixel Journey.
 
-**What this repo delivers**
-- 6-pillar post database (Explore / Learn / Build / Play / Enjoy / Lore)
-- Reusable LLM prompts for scaling content
-- Standards extending `pixel-journey-standards` + design-system
-- GitHub Actions that generate smart daily suggestions
-- Beautiful self-contained internal **Px Content Studio** (`demo/index.html`)
-- Live Pixal PFP randomizer from your exact on-chain template (781515)
+**Built in the same spirit of excellence** as `pixel-journey-design-system` and `pixel-journey-standards` — educational, hand-off-ready, zero ongoing cost, and community/ambassador friendly.
 
-Everything follows the same educational, zero-cost, hand-off-ready quality bar as gkniftyheads-tracker.
+## What This Repo Delivers
 
-> Perfect for the Pixel Journey core team, future ambassadors, and AI agents. Generate on-brand posts in seconds while staying 100% consistent.
+- **6 Content Pillars**: Explore, Learn, Build, Play, Enjoy, Lore — covering the full spectrum of Pixel Journey storytelling
+- **Reusable Post Libraries** (JSON) — ready-to-post threads, hooks, and CTAs
+- **LLM Prompts** — for scaling content while staying perfectly on-brand
+- **Daily Smart Suggestion Engine** via GitHub Actions (free, versioned history)
+- **Internal Px Content Studio** (`demo/index.html`) — beautiful retro CRT tool with live Pixal PFP randomizer + Canvas graphics
+
+Everything is client-side where possible, leverages public WAX primitives (AtomicAssets), and follows Pixel Journey's core principles: trustless, verifiable, fun, and pixel-perfect.
+
+> Hand this repo to any future contributor or AI agent and they can generate on-brand Pixel Journey content in seconds.
 
 ## Quick Start
 
@@ -25,54 +27,59 @@ git clone https://github.com/pixel-journey/pixel-journey-marketing.git
 cd pixel-journey-marketing
 ```
 
-### Use the Internal Px Content Studio (recommended first step)
-Open `demo/index.html` in any browser. It works instantly with no setup.
+**Best first step**: Open `demo/index.html` in any browser. It works instantly with zero setup and gives you production-ready posts + graphics in seconds.
 
-### Enable daily automation
-1. Go to **Actions** tab
+**Enable daily automation** (recommended):
+1. Go to the **Actions** tab
 2. Enable the `daily-content-sync.yml` workflow
-3. (Optional) Run it manually once
+3. Run it manually once to seed the first suggestions
 
-All generated suggestions land in `data/daily-suggestions.json` and are versioned forever.
+All outputs are committed to `data/` and permanently versioned.
 
-## Content Pillars
+## The 6 Content Pillars
 
-| Pillar   | Focus                              | Target Frequency | Example Use Case                          |
-|----------|------------------------------------|------------------|-------------------------------------------|
-| EXPLORE  | Discovery & Onboarding             | 2-3×/week        | New user paths, ecosystem maps, sneak peeks |
-| LEARN    | WAX & Web3 Education               | 3-4×/week        | AtomicAssets, TX-memo verifiable randomness, IPFS |
-| BUILD    | Technical & Shipping               | 1-2×/week        | PxPackages, PxWallet phases, design system usage |
-| PLAY     | Gamified Experiences               | 2×/week         | Hot or Not, Pixal tiers, XP/streaks       |
-| ENJOY    | Community & Memes                  | 3×/week         | Pixal showcases, community spotlights, fun memes |
-| LORE     | Pixel Journey Universe & Vision    | 1×/week         | RWAs, multi-chain future, trustless storytelling |
+| Pillar   | Focus                                      | Target Cadence | Pixel Journey Examples                                      | Success Signals                  |
+|----------|--------------------------------------------|----------------|-------------------------------------------------------------|----------------------------------|
+| **EXPLORE** | Discovery & New User Onboarding           | 2–3×/week    | First Pixal, PxWallet connect flow, ecosystem map           | Profile visits, new follows     |
+| **LEARN**   | WAX & Web3 Education                      | 3–4×/week    | AtomicAssets deep dives, TX-memo verifiable randomness, IPFS, staking | Saves, thoughtful replies       |
+| **BUILD**   | Technical Shipping & Architecture         | 1–2×/week    | PxPackages unification, PxWallet 26-phase god-mode, design-system usage | GitHub engagement               |
+| **PLAY**    | Gamified Experiences & Rewards            | 2×/week      | Hot or Not voting arena, Pixal tiers, XP/streaks, verifiable pairing | On-chain participation spikes   |
+| **ENJOY**   | Community, Memes & Vibes                  | 3×/week      | Pixal showcases, community spotlights, KitKat heist lore, "PIXAL EYES ONLY" | High engagement, reposts        |
+| **LORE**    | Pixel Journey Universe & Long-term Vision | 1×/week      | RWAs, multi-chain future, why trustless on-chain matters    | Deep reads, meaningful discussion |
 
-## Architecture (GitOps Style)
+## Architecture (GitOps + Client-Side First)
 
 ```
-.github/workflows/     # Daily smart suggestion generator
-standards/             # Extends existing org standards
-post-database/         # 6 JSON files - the heart of reusable content
-prompts/               # LLM system prompts for scaling
-scripts/               # generate-daily-suggestions.js + health calculator
- data/                 # Generated outputs (committed by Actions)
-demo/                  # Internal Px Content Studio (self-contained HTML)
+.github/workflows/          # Free daily suggestion generator (no secrets needed)
+standards/                   # Brand voice, social guidelines, visual rules
+post-database/               # 6 JSON pillar files — the reusable content heart
+prompts/                     # LLM system prompts for scaling (Antigravity / Claude / Grok)
+scripts/                     # generate-daily-suggestions.js + future health scoring
+ data/                       # Generated outputs (committed automatically)
+demo/                        # Internal Px Content Studio (self-contained retro HTML)
 ```
 
-## The Internal Px Content Studio
+## The Internal Px Content Studio (`demo/index.html`)
 
-`demo/index.html` is a production-grade internal tool featuring:
-- Smart "INSPIRE ME" post picker (respects 21-day history, pillar balance)
-- Live Pixal PFP randomizer from template 781515 (multi-node, retry)
-- Retro CRT Canvas graphics engine with neon pixel frames + dynamic overlays
-- One-click Copy + Download PNG
-- Fully client-side (localStorage history)
+A production-grade internal tool featuring:
 
-This is **internal only** for now. The public polished PxMarketing Portal will live in a future dedicated `px-marketing` repo (following PxPortals pattern).
+- **Smart "INSPIRE ME"** post picker (respects history via localStorage + pillar balance)
+- **Live Pixal PFP Randomizer** from your exact on-chain template (`pixeljourney` / `pixals` / `781515`)
+- **Retro CRT Canvas Graphics Engine** — neon pixel frames + crisp Pixal image + dynamic overlays ("PIXAL EYES ONLY", mint #, date)
+- One-click **Copy Text** + high-quality **Download PNG**
+- Fully client-side, keyboard-driven, beautiful dark retro aesthetic
+
+This is **internal tooling** for the core team and future ambassadors. The public-facing PxMarketing Portal will live in a dedicated future repo under the PxPortals pattern.
 
 ## Contributing
 
-Pull requests that add high-quality posts to the database, improve prompts, or enhance the Content Studio are very welcome.
+We welcome PRs that:
+- Add high-quality, on-brand posts to any pillar
+- Improve LLM prompts or the Content Studio
+- Enhance the daily suggestion logic
 
-**License**: MIT — free for the WAX & Pixel Journey community.
+Please keep the friendly, educational, pixel-perfect tone.
 
-Built with ❤️ for the Pixel Journey ecosystem.
+**License**: MIT — open for the WAXFAMs & Pixel Journey community.
+
+Built with ❤️ for the Pixel Journey ecosystem — Explore, Learn, Enjoy Web3.

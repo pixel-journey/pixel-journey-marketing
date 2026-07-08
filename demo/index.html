@@ -8,357 +8,454 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap');
-        body { font-family: 'Press Start 2P', system-ui; }
+        body { 
+            font-family: 'Press Start 2P', system-ui, sans-serif; 
+            background: #0a0a0a;
+            color: #00ffff;
+        }
         .crt { 
-            background: #0a0a0a; 
             position: relative; 
             overflow: hidden;
         }
         .crt::after {
             content: "";
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            position: absolute; 
+            inset: 0;
             background: repeating-linear-gradient(
                 transparent 0px,
-                transparent 3px,
-                rgba(0, 255, 255, 0.06) 3px,
-                rgba(0, 255, 255, 0.06) 4px
+                transparent 2px,
+                rgba(0, 255, 255, 0.035) 2px,
+                rgba(0, 255, 255, 0.035) 3px
             );
             pointer-events: none;
-            z-index: 1;
+            z-index: 2;
         }
-        .neon-text { text-shadow: 0 0 8px #00ffff, 0 0 16px #ff00ff; }
+        .neon-cyan { text-shadow: 0 0 6px #00ffff, 0 0 12px #00ffff; }
+        .neon-pink { text-shadow: 0 0 6px #ff00ff, 0 0 12px #ff00ff; }
         .pixel-border {
-            border: 4px solid #00ffff;
-            box-shadow: 0 0 0 4px #ff00ff, 0 0 0 8px #00ffff;
+            border: 6px solid #00ffff;
+            box-shadow: 0 0 0 6px #ff00ff, 0 0 0 12px #00ffff;
+            image-rendering: pixelated;
         }
         .retro-btn {
-            transition: all 0.1s ease;
-            box-shadow: 0 4px 0 #00ffff;
+            transition: transform 0.05s ease, box-shadow 0.05s ease;
+            box-shadow: 0 5px 0 #00ffff;
+            font-weight: 700;
         }
-        .retro-btn:active { transform: translateY(4px); box-shadow: 0 0 0 #00ffff; }
-        canvas { image-rendering: pixelated; }
+        .retro-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #00ffff;
+        }
+        .section-header {
+            font-size: 1.35rem;
+            letter-spacing: 1px;
+        }
+        canvas { 
+            image-rendering: crisp-edges; 
+        }
+        .post-text {
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
     </style>
 </head>
-<body class="bg-[#0a0a0a] text-[#00ffff] crt">
-    <div class="max-w-7xl mx-auto p-6">
+<body class="crt">
+    <div class="max-w-7xl mx-auto px-6 py-8">
         <!-- Header -->
-        <div class="flex items-center justify-between mb-8 border-b border-[#00ffff]/30 pb-4">
-            <div>
-                <h1 class="text-4xl font-bold neon-text flex items-center gap-3">
-                    <i class="fa-solid fa-gamepad"></i> 
-                    PX CONTENT STUDIO
-                </h1>
-                <p class="text-[#ff00ff] text-sm mt-1">INTERNAL • pixel-journey-marketing • v0.1</p>
+        <div class="flex items-center justify-between mb-10 border-b border-[#00ffff]/20 pb-6">
+            <div class="flex items-center gap-4">
+                <div class="w-11 h-11 rounded-full bg-gradient-to-br from-[#00ffff] to-[#ff00ff] flex items-center justify-center">
+                    <i class="fa-solid fa-gamepad text-black text-3xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-5xl font-bold tracking-wider neon-cyan">PX CONTENT STUDIO</h1>
+                    <p class="text-[#ff00ff] text-sm -mt-1">INTERNAL TOOL • PIXEL JOURNEY</p>
+                </div>
             </div>
-            <div class="text-right text-xs">
-                <div class="text-[#ff00ff]">RETRO PIXEL EDITION</div>
-                <div class="text-[#00ffff]/60">Foundations • SoMe-marketing repo</div>
+            <div class="text-right">
+                <div class="text-xs text-[#ff00ff]/70">RETRO PIXEL EDITION v0.2</div>
+                <div class="text-[10px] text-[#00ffff]/50">pixel-journey-marketing</div>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
             
             <!-- POST INSPIRER -->
-            <div class="bg-[#111] border border-[#00ffff]/40 p-6 rounded-xl">
-                <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-2xl font-bold flex items-center gap-2">
-                        <i class="fa-solid fa-lightbulb"></i> POST INSPIRER
-                    </h2>
+            <div class="lg:col-span-3 bg-[#111111] border border-[#00ffff]/30 rounded-2xl p-7">
+                <div class="flex items-center justify-between mb-5">
+                    <div>
+                        <h2 class="section-header font-bold flex items-center gap-3 neon-pink">
+                            <i class="fa-solid fa-lightbulb"></i> 
+                            POST INSPIRER
+                        </h2>
+                        <p class="text-xs text-[#00ffff]/60 mt-1">Smart, history-aware suggestions from the 6 pillars</p>
+                    </div>
                     <button onclick="inspireMe()" 
-                            class="retro-btn bg-[#ff00ff] hover:bg-[#ff00ff]/90 text-black px-6 py-2 rounded font-bold text-sm flex items-center gap-2">
-                        <i class="fa-solid fa-magic"></i> INSPIRE ME
+                            class="retro-btn bg-[#ff00ff] hover:bg-[#ff00ff]/90 active:bg-white text-black px-8 py-3 rounded-xl text-sm flex items-center gap-2.5">
+                        <i class="fa-solid fa-magic"></i> 
+                        <span>INSPIRE ME</span>
                     </button>
                 </div>
 
-                <div class="mb-4 flex flex-wrap gap-2" id="pillar-filters">
-                    <!-- Populated by JS -->
+                <!-- Pillar chips -->
+                <div class="flex flex-wrap gap-2 mb-5" id="pillar-chips">
+                    <!-- JS populated -->
                 </div>
 
-                <div id="post-preview" class="hidden bg-[#0a0a0a] border border-[#00ffff]/30 p-5 rounded-lg min-h-[220px]">
-                    <div class="flex items-center gap-2 mb-3">
-                        <span id="post-pillar" class="px-3 py-1 text-xs font-bold rounded-full bg-[#00ffff] text-black"></span>
-                        <span id="post-id" class="text-xs text-[#00ffff]/60 font-mono"></span>
+                <!-- Post Preview -->
+                <div id="post-preview" class="hidden bg-[#0a0a0a] border border-[#00ffff]/20 rounded-xl p-6 min-h-[210px]">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span id="post-pillar-badge" 
+                              class="px-4 py-1 text-xs font-bold rounded-full bg-[#00ffff] text-black tracking-widest"></span>
+                        <span id="post-id" class="font-mono text-xs text-[#00ffff]/50"></span>
                     </div>
-                    <div id="post-text" class="text-[#00ffff] leading-relaxed text-[15px] whitespace-pre-wrap"></div>
                     
-                    <div class="mt-5 flex gap-3">
-                        <button onclick="copyPost()" 
-                                class="flex-1 retro-btn bg-[#00ffff] hover:bg-white text-black py-2.5 rounded font-bold flex items-center justify-center gap-2 text-sm">
-                            <i class="fa-solid fa-copy"></i> COPY TEXT
+                    <div id="post-text" class="post-text text-[#00ffff] whitespace-pre-wrap"></div>
+                    
+                    <div class="mt-6 flex gap-3">
+                        <button onclick="copyCurrentPost()" 
+                                class="flex-1 retro-btn bg-[#00ffff] hover:bg-white text-black py-3 rounded-xl text-sm flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-copy"></i> 
+                            <span>COPY TO CLIPBOARD</span>
                         </button>
-                        <button onclick="regeneratePost()" 
-                                class="px-5 retro-btn border border-[#00ffff] hover:bg-[#00ffff]/10 py-2.5 rounded font-bold flex items-center justify-center gap-2 text-sm">
-                            <i class="fa-solid fa-sync"></i>
+                        <button onclick="inspireMe()" 
+                                class="px-6 retro-btn border-2 border-[#00ffff] hover:bg-[#00ffff]/5 text-[#00ffff] py-3 rounded-xl text-sm flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-sync-alt"></i>
                         </button>
                     </div>
                 </div>
 
-                <div id="post-placeholder" class="text-center py-12 text-[#00ffff]/40">
-                    <i class="fa-solid fa-magic text-4xl mb-3"></i>
-                    <p>Click INSPIRE ME to get a fresh on-brand post</p>
+                <div id="post-placeholder" class="flex flex-col items-center justify-center py-14 text-center">
+                    <i class="fa-solid fa-magic text-5xl text-[#00ffff]/30 mb-4"></i>
+                    <p class="text-[#00ffff]/50 text-sm">Click <span class="font-bold text-[#ff00ff]">INSPIRE ME</span> for a fresh on-brand post</p>
                 </div>
             </div>
 
             <!-- PIXAL GRAPHICS ENGINE -->
-            <div class="bg-[#111] border border-[#ff00ff]/40 p-6 rounded-xl">
-                <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-2xl font-bold flex items-center gap-2">
-                        <i class="fa-solid fa-image"></i> PIXAL GRAPHICS ENGINE
-                    </h2>
+            <div class="lg:col-span-2 bg-[#111111] border border-[#ff00ff]/30 rounded-2xl p-7 flex flex-col">
+                <div class="flex items-center justify-between mb-5">
+                    <div>
+                        <h2 class="section-header font-bold flex items-center gap-3 neon-cyan">
+                            <i class="fa-solid fa-image"></i> 
+                            PIXAL GRAPHICS
+                        </h2>
+                        <p class="text-xs text-[#ff00ff]/60 mt-1">Live from template 781515</p>
+                    </div>
                     <button onclick="getRandomPixal()" 
-                            class="retro-btn bg-[#ff00ff] hover:bg-[#ff00ff]/90 text-black px-5 py-2 rounded font-bold text-sm flex items-center gap-2">
-                        <i class="fa-solid fa-dice"></i> RANDOM PIXAL
+                            class="retro-btn bg-[#00ffff] hover:bg-white text-black px-6 py-3 rounded-xl text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-dice"></i> 
+                        <span>RANDOM PIXAL</span>
                     </button>
                 </div>
 
-                <div class="flex justify-center mb-4">
-                    <canvas id="promo-canvas" width="1080" height="1080" 
-                            class="pixel-border bg-black max-w-full w-[420px] h-[420px] rounded"></canvas>
+                <div class="flex-1 flex items-center justify-center bg-[#0a0a0a] rounded-xl border border-[#ff00ff]/20 mb-5 overflow-hidden">
+                    <canvas id="promo-canvas" width="1080" height="1080" class="max-w-full w-[380px] h-[380px] rounded-lg pixel-border"></canvas>
                 </div>
 
-                <div id="pixal-info" class="hidden text-center mb-4 text-sm">
-                    <div class="font-mono text-[#ff00ff]">#<span id="pixal-asset-id"></span> • Mint #<span id="pixal-mint"></span></div>
+                <div id="pixal-meta" class="hidden text-center mb-4">
+                    <div class="font-mono text-sm text-[#ff00ff]">
+                        #<span id="pixal-asset-id" class="font-bold"></span> 
+                        • Mint <span id="pixal-mint" class="font-bold"></span>
+                    </div>
                 </div>
 
                 <div class="flex gap-3">
-                    <button onclick="downloadPromoImage()" 
-                            class="flex-1 retro-btn bg-[#00ffff] hover:bg-white text-black py-3 rounded font-bold flex items-center justify-center gap-2 text-sm disabled:opacity-50" id="download-btn" disabled>
-                        <i class="fa-solid fa-download"></i> DOWNLOAD PNG
+                    <button onclick="downloadPromoPNG()" id="download-btn"
+                            class="flex-1 retro-btn bg-[#ff00ff] hover:bg-white text-black disabled:opacity-40 py-3.5 rounded-xl text-sm font-bold flex items-center justify-center gap-2" disabled>
+                        <i class="fa-solid fa-download"></i> 
+                        <span>DOWNLOAD PNG</span>
                     </button>
                     <button onclick="getRandomPixal()" 
-                            class="px-6 retro-btn border border-[#ff00ff] hover:bg-[#ff00ff]/10 py-3 rounded font-bold flex items-center justify-center gap-2 text-sm">
-                        <i class="fa-solid fa-sync"></i> AGAIN
+                            class="px-7 retro-btn border-2 border-[#ff00ff] hover:bg-[#ff00ff]/5 text-[#ff00ff] py-3.5 rounded-xl text-sm flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-redo"></i>
                     </button>
                 </div>
-                <p class="text-center text-[10px] text-[#00ffff]/40 mt-3">Template 781515 • pixeljourney / pixals • Live on WAX</p>
+                
+                <p class="text-center text-[10px] text-[#00ffff]/40 mt-4 tracking-widest">PIXELJOURNEY • PIXALS SCHEMA • TEMPLATE 781515</p>
             </div>
         </div>
 
-        <!-- Footer / Status -->
-        <div class="mt-8 text-center text-xs text-[#00ffff]/40 flex items-center justify-center gap-4">
-            <div>Internal tool only • Foundations live in <span class="font-mono">pixel-journey-marketing</span> repo</div>
-            <div class="w-px h-3 bg-[#00ffff]/30"></div>
-            <div onclick="clearHistory()" class="cursor-pointer hover:text-[#ff00ff]">Clear local history</div>
+        <!-- Status bar -->
+        <div class="mt-8 flex items-center justify-between text-xs text-[#00ffff]/40 px-1">
+            <div>Internal only • Foundations in <span class="font-mono text-[#ff00ff]">pixel-journey-marketing</span></div>
+            <div onclick="clearLocalHistory()" class="cursor-pointer hover:text-[#ff00ff] flex items-center gap-1.5">
+                <i class="fa-solid fa-trash-alt"></i> 
+                <span>CLEAR HISTORY</span>
+            </div>
         </div>
     </div>
 
-    <script>
-        // Tailwind script
-        function initTailwind() {
-            document.documentElement.style.setProperty('--accent', '#00ffff');
+<script>
+    // Tailwind runtime config
+    function setupTailwind() {
+        // Already using CDN classes
+    }
+
+    // High-quality starter posts (Pixel Journey specific)
+    const postPool = [
+        {
+            id: "learn-atomicassets-001",
+            pillar: "learn",
+            text: "AtomicAssets on WAX is pure magic. Collection → Schema → Template → Asset. Your Pixals live at template 781515 under the pixals schema. Here’s exactly how the on-chain data flows and why it feels so cheap, fast, and verifiable."
+        },
+        {
+            id: "learn-tx-memo-seeds-002",
+            pillar: "learn",
+            text: "Hot or Not pairing is 100% on-chain verifiable. We derive the seed from the TX memo + recent block header. No oracle. No RAM. No trust assumptions. This is how we keep every round transparent and fair."
+        },
+        {
+            id: "play-hot-or-not-live-007",
+            pillar: "play",
+            text: "Hot or Not alpha is live. Verifiable TX-memo seeds. 50% of rewards go to top voters. Pixal tiers (Holder → Stacker → Whale → Kraken) matter. Come vote on the rarest surviving Pixals and build your streak."
+        },
+        {
+            id: "enjoy-pixal-random-003",
+            pillar: "enjoy",
+            text: "Pulled a fresh random Pixal from the remaining on-chain supply straight into the studio. Which survivor speaks to you today? The early mints are getting rare..."
+        },
+        {
+            id: "build-pxwallet-phase-012",
+            pillar: "build",
+            text: "PxWallet god-mode continues through the 26-phase master plan. Current focus: encrypted local vault + secure cross-chain key derivation (WAX → EVM & Solana). Everything client-side with WharfKit. No backend. No compromises."
+        },
+        {
+            id: "lore-pixel-journey-vision-001",
+            pillar: "lore",
+            text: "Pixel Journey started on WAX in 2023 and is expanding across chains. Not just NFTs — a full ecosystem of verifiable mechanics, education, and playful ownership. The vision is simple: make Web3 feel like a retro pixel adventure worth exploring."
+        },
+        {
+            id: "enjoy-kitkat-heist-004",
+            pillar: "enjoy",
+            text: "POV: You finally located the legendary KitKat stash hidden in the Pixel Journey lore... but the real prize was the community of Pixal holders we found along the way."
+        }
+    ];
+
+    let currentPost = null;
+    let currentPixal = null;
+
+    function initPillarChips() {
+        const container = document.getElementById('pillar-chips');
+        const pillars = ['explore', 'learn', 'build', 'play', 'enjoy', 'lore'];
+        
+        pillars.forEach(pillar => {
+            const chip = document.createElement('button');
+            chip.className = `px-4 py-1.5 text-xs font-bold rounded-full border border-[#00ffff]/40 hover:bg-[#00ffff]/10 active:bg-[#00ffff] active:text-black transition-all`;
+            chip.textContent = pillar.toUpperCase();
+            chip.onclick = () => {
+                // Visual feedback + future filtering
+                document.querySelectorAll('#pillar-chips button').forEach(b => b.classList.remove('bg-[#00ffff]', 'text-black', 'border-[#00ffff]'));
+                chip.classList.add('bg-[#00ffff]', 'text-black', 'border-[#00ffff]');
+                // For now just console hint
+                console.log('%c[Px Studio] Filtered view would show only: ' + pillar, 'color:#ff00ff');
+            };
+            container.appendChild(chip);
+        });
+    }
+
+    function inspireMe() {
+        if (postPool.length === 0) return;
+
+        // Simple smart selection (in real version we load from post-database/ + apply history filter)
+        const randomIndex = Math.floor(Math.random() * postPool.length);
+        currentPost = postPool[randomIndex];
+
+        // Record in local history
+        let history = JSON.parse(localStorage.getItem('px_content_history') || '[]');
+        history.unshift({ id: currentPost.id, pillar: currentPost.pillar, ts: Date.now() });
+        localStorage.setItem('px_content_history', JSON.stringify(history.slice(0, 30)));
+
+        // Render preview
+        document.getElementById('post-placeholder').classList.add('hidden');
+        const preview = document.getElementById('post-preview');
+        preview.classList.remove('hidden');
+
+        document.getElementById('post-pillar-badge').textContent = currentPost.pillar.toUpperCase();
+        document.getElementById('post-id').textContent = currentPost.id;
+        document.getElementById('post-text').innerHTML = currentPost.text;
+    }
+
+    function copyCurrentPost() {
+        if (!currentPost) return;
+        navigator.clipboard.writeText(currentPost.text).then(() => {
+            const original = event.currentTarget;
+            const btn = document.querySelector('#post-preview button');
+            if (btn) {
+                const oldHTML = btn.innerHTML;
+                btn.innerHTML = `<i class="fa-solid fa-check"></i> COPIED!`;
+                setTimeout(() => { btn.innerHTML = oldHTML; }, 1600);
+            }
+        });
+    }
+
+    // === PIXAL RANDOMIZER (Multi-node, robust) ===
+    const ATOMIC_NODES = [
+        'https://wax.api.atomicassets.io/atomicassets/v1',
+        'https://atomic.wax.io/atomicassets/v1',
+        'https://wax-atomic.eosphere.io/atomicassets/v1'
+    ];
+
+    async function getRandomPixal(retries = 2) {
+        const canvas = document.getElementById('promo-canvas');
+        const ctx = canvas.getContext('2d');
+        const downloadBtn = document.getElementById('download-btn');
+
+        // Loading state
+        ctx.fillStyle = '#0a0a0a';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#00ffff';
+        ctx.font = '22px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('PULLING FROM WAX...', canvas.width / 2, canvas.height / 2);
+
+        let asset = null;
+
+        for (let node of ATOMIC_NODES) {
+            try {
+                const url = `${node}/assets?collection_name=pixeljourney&schema_name=pixals&template_id=781515&page=1&limit=100&order=desc&sort=asset_id`;
+                const res = await fetch(url, { signal: AbortSignal.timeout(6500) });
+                const json = await res.json();
+
+                if (json.success && json.data && json.data.length > 0) {
+                    asset = json.data[Math.floor(Math.random() * json.data.length)];
+                    break;
+                }
+            } catch (err) {
+                console.warn('Atomic node failed, trying next...', err.message);
+                if (retries-- <= 0) break;
+            }
         }
 
-        // Starter posts (embedded for single-file magic)
-        const starterPosts = [
-            { id: "learn-atomicassets-001", pillar: "learn", text: "AtomicAssets on WAX is pure magic. Collection → Schema → Template → Asset. Your Pixals live at template 781515. Here’s exactly how the on-chain data flows (and why it’s so cheap & verifiable)." },
-            { id: "learn-tx-memo-002", pillar: "learn", text: "Hot or Not pairing is 100% on-chain verifiable. We use the TX memo + block header as the seed. No oracle. No RAM cost. No trust required." },
-            { id: "enjoy-pixal-random-001", pillar: "enjoy", text: "Random Pixal from the remaining supply just got pulled into the studio. Which survivor are you claiming next?" },
-            { id: "play-hot-or-not-007", pillar: "play", text: "Hot or Not alpha is live. Verifiable TX-memo seeds. 50% rewards to top voters. Pixal tiers matter. Come vote on the rarest survivors." },
-            { id: "build-pxwallet-012", pillar: "build", text: "PxWallet god-mode is progressing through the 26-phase roadmap. Current focus: encrypted vault + cross-chain key derivation (WAX → EVM/Solana). All client-side, zero backend." }
-        ];
-
-        let currentPost = null;
-        let currentPixal = null;
-
-        function initPillarFilters() {
-            const container = document.getElementById('pillar-filters');
-            const pillars = ['explore','learn','build','play','enjoy','lore'];
-            pillars.forEach(p => {
-                const btn = document.createElement('button');
-                btn.className = `px-3 py-1 text-xs rounded-full border border-[#00ffff]/40 hover:bg-[#00ffff]/10 transition-colors`;
-                btn.textContent = p.toUpperCase();
-                btn.onclick = () => filterByPillar(p, btn);
-                container.appendChild(btn);
-            });
+        if (!asset) {
+            ctx.fillStyle = '#ff00ff';
+            ctx.fillText('ALL NODES TIMED OUT', canvas.width / 2, canvas.height / 2 + 40);
+            return;
         }
 
-        function filterByPillar(pillar, btn) {
-            // Simple visual feedback
-            document.querySelectorAll('#pillar-filters button').forEach(b => b.classList.remove('bg-[#00ffff]', 'text-black'));
-            btn.classList.add('bg-[#00ffff]', 'text-black');
-            // In full version we would filter the pool
-            console.log('Filtered to pillar:', pillar);
+        currentPixal = {
+            asset_id: asset.asset_id,
+            mint: asset.template_mint || '??',
+            name: asset.name,
+            ipfs: asset.data?.img || asset.immutable_data?.img
+        };
+
+        document.getElementById('pixal-meta').classList.remove('hidden');
+        document.getElementById('pixal-asset-id').textContent = currentPixal.asset_id;
+        document.getElementById('pixal-mint').textContent = currentPixal.mint;
+        downloadBtn.disabled = false;
+
+        await renderPixalOnCanvas(currentPixal);
+    }
+
+    async function renderPixalOnCanvas(pixal) {
+        const canvas = document.getElementById('promo-canvas');
+        const ctx = canvas.getContext('2d');
+        const w = canvas.width;
+        const h = canvas.height;
+
+        // Deep dark background
+        ctx.fillStyle = '#0a0a0a';
+        ctx.fillRect(0, 0, w, h);
+
+        // Double neon pixel border (cyan + pink)
+        ctx.strokeStyle = '#00ffff';
+        ctx.lineWidth = 22;
+        ctx.strokeRect(28, 28, w - 56, h - 56);
+
+        ctx.strokeStyle = '#ff00ff';
+        ctx.lineWidth = 9;
+        ctx.strokeRect(48, 48, w - 96, h - 96);
+
+        // Subtle inner grid (retro pixel feel)
+        ctx.strokeStyle = 'rgba(0,255,255,0.08)';
+        ctx.lineWidth = 1;
+        for (let i = 80; i < w - 80; i += 38) {
+            ctx.beginPath();
+            ctx.moveTo(i, 80);
+            ctx.lineTo(i, h - 80);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(80, i);
+            ctx.lineTo(w - 80, i);
+            ctx.stroke();
         }
 
-        function inspireMe() {
-            const eligible = starterPosts; // In real version: load from post-database + apply localStorage history filter
-            if (!eligible.length) return;
-
-            const randomIndex = Math.floor(Math.random() * eligible.length);
-            currentPost = eligible[randomIndex];
-
-            // Save to local history
-            let history = JSON.parse(localStorage.getItem('px_used_posts') || '[]');
-            history.unshift({ id: currentPost.id, ts: Date.now() });
-            localStorage.setItem('px_used_posts', JSON.stringify(history.slice(0, 50)));
-
-            // Render
-            document.getElementById('post-placeholder').classList.add('hidden');
-            document.getElementById('post-preview').classList.remove('hidden');
-
-            document.getElementById('post-pillar').textContent = currentPost.pillar.toUpperCase();
-            document.getElementById('post-id').textContent = currentPost.id;
-            document.getElementById('post-text').textContent = currentPost.text;
+        if (!pixal.ipfs) {
+            ctx.fillStyle = '#ff00ff';
+            ctx.font = 'bold 28px monospace';
+            ctx.fillText('NO IMAGE DATA', w/2, h/2);
+            return;
         }
 
-        function copyPost() {
-            if (!currentPost) return;
-            navigator.clipboard.writeText(currentPost.text).then(() => {
-                const btns = document.querySelectorAll('#post-preview button');
-                const originalText = btns[0].innerHTML;
-                btns[0].innerHTML = '<i class="fa-solid fa-check"></i> COPIED!';
-                setTimeout(() => { btns[0].innerHTML = originalText; }, 1800);
-            });
-        }
+        // Load Pixal image
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.src = `https://ipfs.io/ipfs/${pixal.ipfs}`;
 
-        function regeneratePost() {
-            inspireMe();
-        }
+        img.onload = () => {
+            const size = 580;
+            const x = (w - size) / 2;
+            const y = (h - size) / 2 - 55;
 
-        // === PIXAL RANDOMIZER (Production ready) ===
-        const ATOMIC_NODES = [
-            'https://wax.api.atomicassets.io/atomicassets/v1',
-            'https://atomic.wax.io/atomicassets/v1',
-            'https://wax-atomic.eosphere.io/atomicassets/v1'
-        ];
+            ctx.imageSmoothingEnabled = false;
+            ctx.drawImage(img, x, y, size, size);
 
-        async function getRandomPixal() {
-            const btns = document.querySelectorAll('button');
-            btns.forEach(b => b.disabled = true);
+            // Top banner text
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 38px monospace';
+            ctx.textAlign = 'center';
+            ctx.fillText('PIXAL EYES ONLY', w / 2, 115);
 
-            const canvas = document.getElementById('promo-canvas');
-            const ctx = canvas.getContext('2d', { alpha: true });
-            ctx.fillStyle = '#0a0a0a';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            // Bottom info
             ctx.fillStyle = '#00ffff';
+            ctx.font = 'bold 26px monospace';
+            ctx.fillText(`SURVIVOR #${pixal.mint}`, w / 2, h - 95);
+
+            ctx.fillStyle = '#ff00ff';
             ctx.font = '20px monospace';
-            ctx.fillText('FETCHING FROM WAX...', 320, 540);
+            ctx.fillText(new Date().toISOString().split('T')[0], w / 2, h - 58);
+        };
 
-            let asset = null;
-            for (let i = 0; i < ATOMIC_NODES.length; i++) {
-                try {
-                    const url = `${ATOMIC_NODES[i]}/assets?collection_name=pixeljourney&schema_name=pixals&template_id=781515&page=1&limit=100&order=desc&sort=asset_id`;
-                    const res = await fetch(url, { signal: AbortSignal.timeout(7000) });
-                    const json = await res.json();
-                    if (json.success && json.data?.length) {
-                        asset = json.data[Math.floor(Math.random() * json.data.length)];
-                        break;
-                    }
-                } catch (e) {
-                    console.warn('Node failed, trying next...', e);
-                }
+        img.onerror = () => {
+            ctx.fillStyle = '#ff00ff';
+            ctx.font = 'bold 26px monospace';
+            ctx.fillText('IMAGE LOAD ERROR', w/2, h/2);
+        };
+    }
+
+    function downloadPromoPNG() {
+        if (!currentPixal) return;
+        const canvas = document.getElementById('promo-canvas');
+        const link = document.createElement('a');
+        link.download = `pixal-${currentPixal.asset_id}-promo.png`;
+        link.href = canvas.toDataURL('image/png', 0.95);
+        link.click();
+    }
+
+    function clearLocalHistory() {
+        if (confirm('Clear post usage history? Fresh suggestions will be unlocked.')) {
+            localStorage.removeItem('px_content_history');
+            alert('History cleared. The studio feels brand new again.');
+        }
+    }
+
+    function bootStudio() {
+        setupTailwind();
+        initPillarChips();
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key.toLowerCase() === 'i') inspireMe();
+            if (e.key.toLowerCase() === 'r') getRandomPixal();
+            if (e.key === '?') {
+                alert('Px Content Studio Shortcuts\n\nI — Inspire Me (new post)\nR — Random Pixal PFP\n? — This help dialog');
             }
+        });
 
-            btns.forEach(b => b.disabled = false);
+        // Friendly boot message
+        console.log('%c[Px Content Studio v0.2] Internal Pixel Journey tool ready. Clean foundations. No gkniftyheads references. Pure pixel energy.', 'color:#00ffff');
+    }
 
-            if (!asset) {
-                alert('All AtomicAssets nodes failed. Please try again in 30 seconds.');
-                return;
-            }
-
-            currentPixal = {
-                asset_id: asset.asset_id,
-                mint: asset.template_mint,
-                name: asset.name,
-                ipfs: asset.data?.img || asset.immutable_data?.img
-            };
-
-            document.getElementById('pixal-info').classList.remove('hidden');
-            document.getElementById('pixal-asset-id').textContent = currentPixal.asset_id;
-            document.getElementById('pixal-mint').textContent = currentPixal.mint;
-            document.getElementById('download-btn').disabled = false;
-
-            await drawPromoCanvas(currentPixal);
-        }
-
-        async function drawPromoCanvas(pixal) {
-            const canvas = document.getElementById('promo-canvas');
-            const ctx = canvas.getContext('2d');
-            const w = canvas.width;
-            const h = canvas.height;
-
-            // Background
-            ctx.fillStyle = '#0a0a0a';
-            ctx.fillRect(0, 0, w, h);
-
-            // Neon pixel border frame
-            ctx.strokeStyle = '#00ffff';
-            ctx.lineWidth = 18;
-            ctx.strokeRect(30, 30, w - 60, h - 60);
-            ctx.strokeStyle = '#ff00ff';
-            ctx.lineWidth = 8;
-            ctx.strokeRect(50, 50, w - 100, h - 100);
-
-            // Load and draw Pixal image (crisp pixel art)
-            const img = new Image();
-            img.crossOrigin = 'anonymous';
-            img.src = `https://ipfs.io/ipfs/${pixal.ipfs}`;
-
-            img.onload = () => {
-                // Center the image with nice padding
-                const size = 620;
-                const x = (w - size) / 2;
-                const y = (h - size) / 2 - 40;
-
-                ctx.imageSmoothingEnabled = false;
-                ctx.drawImage(img, x, y, size, size);
-
-                // Overlay text
-                ctx.fillStyle = '#ffffff';
-                ctx.font = 'bold 42px monospace';
-                ctx.textAlign = 'center';
-                ctx.fillText('PIXAL EYES ONLY', w/2, 140);
-
-                ctx.fillStyle = '#00ffff';
-                ctx.font = '28px monospace';
-                ctx.fillText(`SURVIVOR #${pixal.mint}`, w/2, h - 110);
-
-                ctx.fillStyle = '#ff00ff';
-                ctx.font = '22px monospace';
-                ctx.fillText(new Date().toISOString().split('T')[0], w/2, h - 70);
-            };
-
-            img.onerror = () => {
-                ctx.fillStyle = '#ff00ff';
-                ctx.font = '32px monospace';
-                ctx.fillText('IMAGE LOAD FAILED', w/2, h/2);
-            };
-        }
-
-        function downloadPromoImage() {
-            if (!currentPixal) return;
-            const canvas = document.getElementById('promo-canvas');
-            const link = document.createElement('a');
-            link.download = `pixal-${currentPixal.asset_id}-promo.png`;
-            link.href = canvas.toDataURL('image/png');
-            link.click();
-        }
-
-        function clearHistory() {
-            if (confirm('Clear all local post history?')) {
-                localStorage.removeItem('px_used_posts');
-                alert('History cleared. Fresh suggestions unlocked!');
-            }
-        }
-
-        // Boot
-        function boot() {
-            initTailwind();
-            initPillarFilters();
-            
-            // Easter egg: press '?' for help
-            document.addEventListener('keydown', (e) => {
-                if (e.key === '?') {
-                    alert('Px Content Studio Shortcuts:\n\nI = Inspire Me\nR = Random Pixal\nC = Copy current post\n? = This help');
-                }
-                if (e.key.toLowerCase() === 'i') inspireMe();
-                if (e.key.toLowerCase() === 'r') getRandomPixal();
-            });
-
-            console.log('%c[Px Content Studio] Internal tool ready. Foundations in pixel-journey-marketing repo.', 'color:#00ffff');
-        }
-
-        window.onload = boot;
-    </script>
+    window.onload = bootStudio;
+</script>
 </body>
 </html>
