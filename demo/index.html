@@ -85,6 +85,9 @@
                         <button onclick="markCurrentAsUsed()" class="px-5 retro-btn border-2 border-[#00ffff] hover:bg-[#00ffff]/5 text-[#00ffff] py-3.5 rounded-2xl text-sm">
                             <i class="fa-solid fa-check"></i>
                         </button>
+                        <button onclick="toggleFavorite()" class="px-4 retro-btn border border-[#ff00ff] hover:bg-[#ff00ff]/10 text-[#ff00ff] py-3.5 rounded-2xl text-sm">
+                            <i class="fa-solid fa-heart"></i>
+                        </button>
                     </div>
                 </div>
 
@@ -136,15 +139,22 @@
                 </div>
             </div>
 
-            <!-- HISTORY PANEL -->
+            <!-- HISTORY + FAVORITES TABS -->
             <div class="xl:col-span-12 section p-7 mt-2">
-                <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-xl font-bold flex items-center gap-3">
-                        <i class="fa-solid fa-history"></i> RECENT HISTORY
-                    </h3>
+                <div class="flex items-center gap-4 mb-4">
+                    <button onclick="showTab('history')" id="tab-history" class="px-4 py-2 text-sm font-bold rounded-full bg-[#00ffff] text-black">HISTORY</button>
+                    <button onclick="showTab('favorites')" id="tab-favorites" class="px-4 py-2 text-sm font-bold rounded-full border border-[#ff00ff] text-[#ff00ff]">FAVORITES</button>
+                    <div class="flex-1"></div>
                     <button onclick="clearLocalHistory()" class="text-xs px-4 py-2 border border-[#ff00ff]/40 rounded-full hover:bg-[#ff00ff]/10">CLEAR HISTORY</button>
                 </div>
-                <div id="history-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-sm max-h-[280px] overflow-auto pr-2"></div>
+
+                <div id="history-panel">
+                    <div id="history-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-sm max-h-[280px] overflow-auto pr-2"></div>
+                </div>
+
+                <div id="favorites-panel" class="hidden">
+                    <div id="favorites-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-sm max-h-[280px] overflow-auto pr-2"></div>
+                </div>
             </div>
 
             <!-- STATS BAR -->
@@ -249,6 +259,20 @@
         });
     }
 
+    function toggleFavorite() {
+        if (!currentPost) return;
+        let favorites = JSON.parse(localStorage.getItem('px_favorites_v1') || '[]');
+        const exists = favorites.findIndex(f => f.id === currentPost.id);
+
+        if (exists !== -1) {
+            favorites.splice(exists, 1);
+        } else {
+            favorites.unshift(currentPost);
+        }
+        localStorage.setItem('px_favorites_v1', JSON.stringify(favorites.slice(0, 50)));
+        renderFavorites();
+    }
+
     function markCurrentAsUsed() {
         if (!currentPost) return;
         let history = JSON.parse(localStorage.getItem('px_history_v3') || '[]');
@@ -278,7 +302,9 @@
                         <span class="text-xs px-2 py-0.5 rounded bg-[#00ffff] text-black font-bold">${item.pillar.toUpperCase()}</span>
                         <div class="font-mono text-xs text-[#00ffff]/50 mt-1.5">${item.id}</div>
                     </div>
-                    <button onclick="event.stopImmediatePropagation(); reuseFromHistory(${index})" class="text-xs px-3 py-1 border border-[#ff00ff]/40 rounded hover:bg-[#ff00ff]/10">REUSE</button>
+                    <div class="flex gap-1">
+                        <button onclick="event.stopImmediatePropagation(); reuseFromHistory(${index})" class="text-xs px-3 py-1 border border-[#ff00ff]/40 rounded hover:bg-[#ff00ff]/10">REUSE</button>
+                    </div>
                 </div>
                 <div class="text-xs mt-3 line-clamp-2 text-[#00ffff]/80">${item.text.substring(0, 110)}...</div>
             `;
@@ -295,6 +321,68 @@
         let history = JSON.parse(localStorage.getItem('px_history_v3') || '[]');
         currentPost = history[index];
         renderPostPreview();
+    }
+
+    function renderFavorites() {
+        const container = document.getElementById('favorites-list');
+        container.innerHTML = '';
+        let favorites = JSON.parse(localStorage.getItem('px_favorites_v1') || '[]');
+
+        if (favorites.length === 0) {
+            container.innerHTML = `<div class="text-[#00ffff]/40 text-xs col-span-full text-center py-4">No favorites yet. Heart posts you like!</div>`;
+            return;
+        }
+
+        favorites.forEach((item, index) => {
+            const div = document.createElement('div');
+            div.className = `history-item bg-[#0a0a0a] border border-[#ff00ff]/20 rounded-xl p-4 cursor-pointer`;
+            div.innerHTML = `
+                <div class="flex justify-between items-start">
+                    <div>
+                        <span class="text-xs px-2 py-0.5 rounded bg-[#ff00ff] text-black font-bold">${item.pillar.toUpperCase()}</span>
+                        <div class="font-mono text-xs text-[#00ffff]/50 mt-1.5">${item.id}</div>
+                    </div>
+                    <button onclick="event.stopImmediatePropagation(); removeFavorite(${index})" class="text-xs px-3 py-1 border border-[#ff00ff]/40 rounded hover:bg-[#ff00ff]/10">REMOVE</button>
+                </div>
+                <div class="text-xs mt-3 line-clamp-2 text-[#00ffff]/80">${item.text.substring(0, 110)}...</div>
+            `;
+            div.onclick = () => {
+                currentPost = item;
+                renderPostPreview();
+            };
+            container.appendChild(div);
+        });
+    }
+
+    function removeFavorite(index) {
+        event.stopImmediatePropagation();
+        let favorites = JSON.parse(localStorage.getItem('px_favorites_v1') || '[]');
+        favorites.splice(index, 1);
+        localStorage.setItem('px_favorites_v1', JSON.stringify(favorites));
+        renderFavorites();
+    }
+
+    function showTab(tab) {
+        const historyPanel = document.getElementById('history-panel');
+        const favoritesPanel = document.getElementById('favorites-panel');
+        const historyTab = document.getElementById('tab-history');
+        const favoritesTab = document.getElementById('tab-favorites');
+
+        if (tab === 'history') {
+            historyPanel.classList.remove('hidden');
+            favoritesPanel.classList.add('hidden');
+            historyTab.classList.add('bg-[#00ffff]', 'text-black');
+            historyTab.classList.remove('border', 'border-[#ff00ff]', 'text-[#ff00ff]');
+            favoritesTab.classList.remove('bg-[#00ffff]', 'text-black');
+            favoritesTab.classList.add('border', 'border-[#ff00ff]', 'text-[#ff00ff]');
+        } else {
+            historyPanel.classList.add('hidden');
+            favoritesPanel.classList.remove('hidden');
+            favoritesTab.classList.add('bg-[#00ffff]', 'text-black');
+            favoritesTab.classList.remove('border', 'border-[#ff00ff]', 'text-[#ff00ff]');
+            historyTab.classList.remove('bg-[#00ffff]', 'text-black');
+            historyTab.classList.add('border', 'border-[#ff00ff]', 'text-[#ff00ff]');
+        }
     }
 
     function updateStats() {
@@ -460,6 +548,7 @@
 
     function renderInitialHistory() {
         renderHistory();
+        renderFavorites();
         updateStats();
     }
 
@@ -487,7 +576,7 @@
             if (!currentPost) inspireMe(false);
         }, 600);
 
-        console.log('%c[Px Content Studio v0.3] Fully aligned. More posts added. Continuing expansion.', 'color:#00ffff');
+        console.log('%c[Px Content Studio v0.3] Fully aligned. Favorites added. Continuing expansion.', 'color:#00ffff');
     }
 
     window.onload = boot;
