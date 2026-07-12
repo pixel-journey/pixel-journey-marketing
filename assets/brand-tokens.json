@@ -1,0 +1,16 @@
+{
+  "colors": {
+    "primary": "#00ffff",
+    "accent": "#ff00ff",
+    "bg": "#0a0a0a",
+    "text": "#ffffff"
+  },
+  "typography": {
+    "heading": "'Press Start 2P', monospace",
+    "body": "monospace"
+  },
+  "spacing": {
+    "base": "8px"
+  },
+  "version": "1.3.7"
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z-0-9]+-[0-9]+$", "minLength": 5},
+    "pillar": {"enum": ["explore", "learn", "build", "play", "enjoy", "lore"]},
+    "copy": {"type": "string", "minLength": 10, "maxLength": 280},
+    "requires_graphic": {"type": "boolean"},
+    "graphic_template": {"type": "string"},
+    "tags": {"type": "array", "items": {"type": "string"}, "maxItems": 5},
+    "hooks": {"type": "array", "items": {"type": "string"}},
+    "cta": {"type": "string"}
+  },
+  "required": ["id", "pillar", "copy"]
+}
