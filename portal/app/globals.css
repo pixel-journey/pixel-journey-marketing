@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Press Start 2P', monospace;
+  background: #0a0a0a;
+  color: #00ffff;
+}
