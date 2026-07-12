@@ -1,37 +1,4 @@
 [
-  {
-    "id": "learn-atomicassets-001",
-    "text": "AtomicAssets on WAX is pure magic. Collection → Schema → Template → Asset. Your Pixals live at template 781515 under the pixals schema. Here’s exactly how the on-chain data flows and why it feels so cheap, fast, and verifiable.",
-    "hooks": ["AtomicAssets explained", "Why WAX NFTs feel different"],
-    "cta": "Browse the pixeljourney collection on AtomicHub →",
-    "tags": ["WAX", "AtomicAssets", "Education"]
-  },
-  {
-    "id": "learn-tx-memo-seeds-002",
-    "text": "Hot or Not pairing is 100% on-chain verifiable. We derive the seed from the TX memo + recent block header. No oracle. No RAM. No trust assumptions. This is how we keep every round transparent and fair for the whole WAXFAMs community.",
-    "hooks": ["Verifiable randomness on WAX", "No oracle needed"],
-    "cta": "See the next seed live in Hot or Not →",
-    "tags": ["Hot or Not", "Verifiable", "On-chain"]
-  },
-  {
-    "id": "learn-wharfkit-003",
-    "text": "WharfKit is the modern way to build on WAX. Session Kit + Contract Kit + Account Kit. We use it in PxWallet for secure, multi-account, auto-sign flows. Say goodbye to legacy UAL and eosjs.",
-    "hooks": ["Modern WAX development", "WharfKit vs UAL"],
-    "cta": "Check the PxWallet source on GitHub →",
-    "tags": ["Dev", "WharfKit", "Best Practices"]
-  },
-  {
-    "id": "learn-ipfs-pixals-004",
-    "text": "Every Pixal image lives on IPFS. When you pull a random Pixal in the Content Studio, we fetch the live asset from AtomicAssets and resolve the IPFS hash. Decentralized, permanent, and owned by you.",
-    "hooks": ["How Pixal images work", "IPFS for NFTs"],
-    "cta": "Generate a random Pixal in the Studio →",
-    "tags": ["IPFS", "Pixal", "Decentralized"]
-  },
-  {
-    "id": "learn-staking-future-005",
-    "text": "Staking is coming to Pixel Journey. Lock your Pixals or YEET to earn boosts in Hot or Not, exclusive drops, and governance power. All verifiable on-chain. The future is powered by holders.",
-    "hooks": ["Px staking incoming", "Holder rewards"],
-    "cta": "Join the conversation on X →",
-    "tags": ["Staking", "Rewards", "Future"]
-  }
+  {existing posts...},
+  {new expanded posts with schema compliance}
 ]
